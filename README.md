@@ -123,6 +123,38 @@ quarkus.http.auth.permission.developers-list.policy=authenticated
 - [Security](docs/modules/ROOT/pages/security.adoc)
 - [Testing real applications](docs/modules/ROOT/pages/testing.adoc)
 
+## AI agent skills
+
+The portable [Agent Skills](https://agentskills.io/) in `skills/` help coding
+agents work with Queryable:
+
+- `quarkus-queryable`: generated endpoints and filters.
+- `quarkus-queryable-lifecycle`: REST listeners, validation and auditing.
+- `quarkus-queryable-development`: maintainers changing this extension.
+
+To install the two consumer skills into a project for supported agents including
+Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI and OpenCode, use Node.js
+22.20 or later and run:
+
+```bash
+npx skills add queryabledev/quarkus-queryable --skill quarkus-queryable quarkus-queryable-lifecycle
+```
+
+Select the agents when prompted; add `-g` for a user-level installation. To
+install the maintainer skill, select `quarkus-queryable-development` instead.
+See the [skills CLI](https://github.com/vercel-labs/skills) for agent selection,
+updates and other options. The command uses the repository's default branch;
+these skills become available there after the changes are published. Choose a
+release or branch matching your application when appropriate. The consumer
+skills currently describe the 4.0.3 API.
+
+Alternatively, copy the complete skill directories, including `references/`,
+from a checkout into the agent's project skill directory: `.agents/skills/`
+for Codex, Cursor, Gemini CLI and OpenCode; `.claude/skills/` for Claude Code;
+or `.github/skills/` for GitHub Copilot. Consult your agent's documentation
+for personal locations and discovery behavior. Restart or reload the agent if
+it does not discover the skills immediately.
+
 ## Build and test
 
 ```bash
@@ -135,7 +167,7 @@ consumer test simulates a separate real application:
 ```bash
 mvn install -DskipTests
 mvn -f consumer-tests/pom.xml test
-``
+```
 
 ## License
 
