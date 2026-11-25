@@ -157,36 +157,7 @@ consumer test simulates a separate real application:
 ```bash
 mvn install -DskipTests
 mvn -f consumer-tests/pom.xml test
-```
-
-## Release
-
-Pushing a stable version tag matching the version in `pom.xml` triggers the
-Maven Central release workflow. It uploads the signed artifacts and returns
-without waiting for publication. Run the separate **Verify Maven Central
-release** workflow manually with a version to check the parent, runtime, and
-deployment artifacts. It checks once and fails if any artifact is unavailable;
-if it fails, check the deployment in the Central Portal and run it again later.
-Configure these repository Actions secrets before publishing: `NEXUS_USERNAME`,
-`NEXUS_PASSWORD`, `GPG_PRIVATE_KEY`, and `GPG_PASSPHRASE`.
-
-## Quarkus extension compliance
-
-The implementation follows the main Quarkus extension principles:
-
-- runtime and deployment artifacts are separate;
-- application metadata is processed with Jandex during augmentation;
-- resources are generated with Gizmo;
-- runtime behavior is exposed through CDI extension points;
-- native reflection requirements are registered at build time;
-- application-specific security remains owned by Quarkus configuration;
-- integration tests consume the runtime extension through normal Quarkus
-  augmentation.
-
-Remaining Quarkiverse onboarding work includes repository transfer, the
-extension proposal, Ecosystem CI registration and documentation registration in
-the Quarkiverse Antora playbook. See
-[`docs/modules/ROOT/pages/testing.adoc`](docs/modules/ROOT/pages/testing.adoc).
+``
 
 ## License
 
